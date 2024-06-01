@@ -7,12 +7,12 @@ export default function SearchBar({ submit }) {
 const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const topic = form.elements.topic.value;
-    if (form.elements.topic.value.trim() === "") {
+    const search = form.elements.search.value;
+    if (form.elements.search.value.trim() === "") {
         toast('Here is your toast.');
         return
     }
-    submit(topic);
+    submit(search);
     form.reset();
     }
 
@@ -24,7 +24,8 @@ const handleSubmit = (event) => {
       type="text"
       autoComplete="off"
       autoFocus
-      placeholder="Search images and photos"
+            placeholder="Search images and photos"
+            name='search'
     />
                 <button type="submit">Search</button>
                 <Toaster

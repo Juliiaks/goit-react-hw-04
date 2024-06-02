@@ -9,7 +9,7 @@ const handleSubmit = (event) => {
     const form = event.target;
     const search = form.elements.search.value;
     if (form.elements.search.value.trim() === "") {
-        toast('Here is your toast.');
+        toast('Plese, enter a word!');
         return
     }
     submit(search);

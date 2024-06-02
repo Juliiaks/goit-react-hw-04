@@ -1,7 +1,8 @@
-export default function ErrorMessage(params) {
+import css from "./errorMessage.module.css"
+export default function ErrorMessage() {
     return (
         <>
-           <p>Oooops... Something went wrong :( </p>
+           <p className={css.error}>Oooops... Something went wrong :( </p>
         </>
     )
 }

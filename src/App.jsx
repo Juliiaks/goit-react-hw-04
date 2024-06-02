@@ -8,9 +8,9 @@ import LoadMoreBtn from './components/LoadmoreBtn/loadMoreBtn'
 import ImageModal from './components/ImageModal/imageModal'
 import ErrorMessage from './components/errorMessage/errorMessage'
 import Modal from 'react-modal';
+import Loader from './components/loader/loader'
 
-Modal.setAppElement('#root');
-
+ Modal.setAppElement('#root');
 function App() {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ function App() {
         const response = await getImagesApi(search, page)
         console.log(response)
         setImages((prev) => [...prev, ...response.data.results])
-        setShowBtn(response.data.total_pages && response.data.total_pages !== page);
+        setShowBtn(response.data.total_pages > 0 && response.data.total_pages !== page);
       }
       catch (error) {
         setError(true)
@@ -86,20 +86,18 @@ function App() {
         />
       )}
       {isLoading && (
-        <DNA/>
+        <Loader/>
       )}
 
       {error && (<ErrorMessage />)}
 
       {selectedImage && (
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} shouldCloseOnOverlayClick={true}>
         <ImageModal
-          
-        urls={selectedImage.urls.regular}
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+          urls={selectedImage.urls.regular}
           alt_description={selectedImage.alt_description}
-            closeModal={closeModal}
           />
-        </Modal >
       )}
 
       { showBtn &&

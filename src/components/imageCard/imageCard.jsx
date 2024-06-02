@@ -1,5 +1,6 @@
-export default function ImageCard({src, alt}) {
+import css from "./imageCard.module.css"
+export default function ImageCard({ src, alt }) {
     return (
-        <img src={src} alt={alt} />
+        <img className={css.image} src={src} alt={alt} />
     )
 }

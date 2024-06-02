@@ -19,6 +19,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null)
+  const [showBtn, setShowBtn] = useState(false);
+  
+
 
 
   useEffect(() => {
@@ -29,6 +32,7 @@ function App() {
         const response = await getImagesApi(search, page)
         console.log(response)
         setImages((prev) => [...prev, ...response.data.results])
+        setShowBtn(response.data.total_pages && response.data.total_pages !== page);
       }
       catch (error) {
         setError(true)
@@ -50,8 +54,12 @@ function App() {
   }
 
   const handleLoadMore = async () => {
+    
     setPage((prevPage) => prevPage + 1);
+   
   }
+
+  //  setShowBtn(images.total_pages && images.total_pages !== page)
 
   function openModal(image) {
     if (!modalIsOpen){
@@ -94,8 +102,9 @@ function App() {
         </Modal >
       )}
 
-      {images.length > 0 &&
-        (<LoadMoreBtn handleLoadMore={handleLoadMore } />)}
+      { showBtn &&
+        (<LoadMoreBtn handleLoadMore={handleLoadMore} />)}
+      
     </>
   )
 }

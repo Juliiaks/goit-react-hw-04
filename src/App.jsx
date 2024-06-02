@@ -54,8 +54,10 @@ function App() {
   }
 
   function openModal(image) {
+    if (!modalIsOpen){
     setSelectedImage(image);
-    setIsOpen(true);
+      setIsOpen(true);
+    }
 }
   
   function closeModal() {
@@ -87,7 +89,8 @@ function App() {
           
         urls={selectedImage.urls.regular}
           alt_description={selectedImage.alt_description}
-        closeModal={closeModal}/>
+            closeModal={closeModal}
+          />
         </Modal >
       )}
 

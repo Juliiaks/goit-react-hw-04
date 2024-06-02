@@ -5,7 +5,7 @@ export default function ImageModal(urls, alt_description, closeModal) {
         <div >
             <div  onClick={closeModal}>
                     <ImageCard
-                     src={urls.regular}
+                     src={urls}
                     alt={alt_description }/>
             </div>
    </div>
